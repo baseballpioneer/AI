@@ -1,0 +1,148 @@
+# ==================== roadnet.json ====================
+# 3-lane intersection: Lane 0 = Left, Lane 1 = Straight, Lane 2 = Straight + Right
+{
+  "intersections": [
+    {
+      "id": "intersection_1_1",
+      "point": {"x": 0.0, "y": 0.0},
+      "width": 20.0,
+      "roads": [
+        "road_north_in", "road_north_out",
+        "road_south_in", "road_south_out",
+        "road_east_in", "road_east_out",
+        "road_west_in", "road_west_out"
+      ],
+      "roadLinks": [
+        {"type": "turn_left", "startRoad": "road_north_in", "endRoad": "road_east_out", "direction": 1,
+         "laneLinks": [{"startLaneIndex": 0, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_north_in", "endRoad": "road_south_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 1, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_north_in", "endRoad": "road_south_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 2}]},
+        {"type": "turn_right", "startRoad": "road_north_in", "endRoad": "road_west_out", "direction": 2,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 1}]},
+        
+        {"type": "turn_left", "startRoad": "road_south_in", "endRoad": "road_west_out", "direction": 1,
+         "laneLinks": [{"startLaneIndex": 0, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_south_in", "endRoad": "road_north_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 1, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_south_in", "endRoad": "road_north_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 2}]},
+        {"type": "turn_right", "startRoad": "road_south_in", "endRoad": "road_east_out", "direction": 2,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 1}]},
+        
+        {"type": "turn_left", "startRoad": "road_east_in", "endRoad": "road_south_out", "direction": 1,
+         "laneLinks": [{"startLaneIndex": 0, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_east_in", "endRoad": "road_west_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 1, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_east_in", "endRoad": "road_west_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 2}]},
+        {"type": "turn_right", "startRoad": "road_east_in", "endRoad": "road_north_out", "direction": 2,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 1}]},
+        
+        {"type": "turn_left", "startRoad": "road_west_in", "endRoad": "road_north_out", "direction": 1,
+         "laneLinks": [{"startLaneIndex": 0, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_west_in", "endRoad": "road_east_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 1, "endLaneIndex": 1}]},
+        {"type": "go_straight", "startRoad": "road_west_in", "endRoad": "road_east_out", "direction": 0,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 2}]},
+        {"type": "turn_right", "startRoad": "road_west_in", "endRoad": "road_south_out", "direction": 2,
+         "laneLinks": [{"startLaneIndex": 2, "endLaneIndex": 1}]}
+      ],
+      "trafficLight": {
+        "roadLinkIndices": [
+          [1, 2, 5, 6],
+          [9, 10, 13, 14],
+          [0, 4, 8, 12],
+          [3, 7, 11, 15]
+        ],
+        "lightphases": [
+          {"time": 30, "availableRoadLinks": [1, 2, 5, 6]},
+          {"time": 30, "availableRoadLinks": [9, 10, 13, 14]},
+          {"time": 30, "availableRoadLinks": [0, 4, 8, 12]},
+          {"time": 30, "availableRoadLinks": [3, 7, 11, 15]}
+        ]
+      },
+      "virtual": false
+    },
+    {"id": "border_north", "point": {"x": 0, "y": 300}, "virtual": true, "roads": ["road_north_in", "road_north_out"], "roadLinks": [], "trafficLight": {"roadLinkIndices": [], "lightphases": []}},
+    {"id": "border_south", "point": {"x": 0, "y": -300}, "virtual": true, "roads": ["road_south_in", "road_south_out"], "roadLinks": [], "trafficLight": {"roadLinkIndices": [], "lightphases": []}},
+    {"id": "border_east", "point": {"x": 300, "y": 0}, "virtual": true, "roads": ["road_east_in", "road_east_out"], "roadLinks": [], "trafficLight": {"roadLinkIndices": [], "lightphases": []}},
+    {"id": "border_west", "point": {"x": -300, "y": 0}, "virtual": true, "roads": ["road_west_in", "road_west_out"], "roadLinks": [], "trafficLight": {"roadLinkIndices": [], "lightphases": []}}
+  ],
+  "roads": [
+    {"id": "road_north_in", "startIntersection": "border_north", "endIntersection": "intersection_1_1",
+     "points": [{"x": 0, "y": 300}, {"x": 0, "y": 10}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    {"id": "road_north_out", "startIntersection": "intersection_1_1", "endIntersection": "border_north",
+     "points": [{"x": 0, "y": 10}, {"x": 0, "y": 300}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    
+    {"id": "road_south_in", "startIntersection": "border_south", "endIntersection": "intersection_1_1",
+     "points": [{"x": 0, "y": -300}, {"x": 0, "y": -10}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    {"id": "road_south_out", "startIntersection": "intersection_1_1", "endIntersection": "border_south",
+     "points": [{"x": 0, "y": -10}, {"x": 0, "y": -300}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    
+    {"id": "road_east_in", "startIntersection": "border_east", "endIntersection": "intersection_1_1",
+     "points": [{"x": 300, "y": 0}, {"x": 10, "y": 0}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    {"id": "road_east_out", "startIntersection": "intersection_1_1", "endIntersection": "border_east",
+     "points": [{"x": 10, "y": 0}, {"x": 300, "y": 0}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    
+    {"id": "road_west_in", "startIntersection": "border_west", "endIntersection": "intersection_1_1",
+     "points": [{"x": -300, "y": 0}, {"x": -10, "y": 0}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]},
+    {"id": "road_west_out", "startIntersection": "intersection_1_1", "endIntersection": "border_west",
+     "points": [{"x": -10, "y": 0}, {"x": -300, "y": 0}],
+     "lanes": [{"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}, {"width": 3, "maxSpeed": 16.67}]}
+  ]
+}
+
+# ==================== flow.json ====================
+# Balanced traffic with left turns, straight, and right turns
+# Spawns ~720 vehicles/hour total (moderate congestion)
+[
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_north_in", "road_south_out"], "interval": 10.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_north_in", "road_east_out"], "interval": 25.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_north_in", "road_west_out"], "interval": 30.0, "startTime": 0, "endTime": 3600},
+  
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_south_in", "road_north_out"], "interval": 10.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_south_in", "road_west_out"], "interval": 25.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_south_in", "road_east_out"], "interval": 30.0, "startTime": 0, "endTime": 3600},
+  
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_east_in", "road_west_out"], "interval": 12.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_east_in", "road_south_out"], "interval": 28.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_east_in", "road_north_out"], "interval": 35.0, "startTime": 0, "endTime": 3600},
+  
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_west_in", "road_east_out"], "interval": 12.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_west_in", "road_north_out"], "interval": 28.0, "startTime": 0, "endTime": 3600},
+  {"vehicle": {"length": 5.0, "width": 2.0, "maxPosAcc": 2.0, "maxNegAcc": 4.5, "usualPosAcc": 2.0, "usualNegAcc": 4.5, "minGap": 2.5, "maxSpeed": 16.67, "headwayTime": 1.5},
+   "route": ["road_west_in", "road_south_out"], "interval": 35.0, "startTime": 0, "endTime": 3600}
+]
+
+# ==================== config.json ====================
+{
+  "interval": 1.0,
+  "seed": 0,
+  "dir": "./",
+  "roadnetFile": "roadnet.json",
+  "flowFile": "flow.json",
+  "rlTrafficLight": true,
+  "saveReplay": true,
+  "roadnetLogFile": "roadnet.log",
+  "replayLogFile": "replay.txt"
+}
